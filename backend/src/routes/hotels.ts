@@ -1,8 +1,15 @@
 import express, {Request,Response, query} from "express";
 import Hotel from "../models/hotels";
 import { HotelSearchResponse } from "../shared/type";
+import verifyToken from "../middleware/auth";
 
 const router = express.Router();
+
+// router.get("/:id",[
+
+// ],async(req:Request,res:Response)=>{
+//   const 
+// });
 
 // api/hotels/search
 router.get("/search",async (req:Request,res:Response)=>{
