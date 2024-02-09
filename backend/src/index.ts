@@ -2,7 +2,7 @@ import express, {Request,Response} from "express";
 import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
-// require("./models/db/conn");
+require("./models/db/conn");
 // require("./models/db/e2e");
 import userRoutes from "./routes/users";
 import authRoutes from "./routes/auth";
@@ -11,6 +11,7 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import { v2 as cloudinary } from "cloudinary";
 import hotelRoutes from "./routes/hotels";
+import bookingsRoutes from "./routes/my-bookings";
 
 
 cloudinary.config({
@@ -19,9 +20,9 @@ cloudinary.config({
     api_secret:process.env.CLOUDINARY_API_SECRET
 })
 
-mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string).then(()=>{
-    console.log("Connected Successfully");
-});
+// mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string).then(()=>{
+//     console.log("Connected Successfully");
+// });
 
 const app = express();
 app.use(cookieParser());
@@ -38,6 +39,7 @@ app.use("/api/auth",authRoutes);
 app.use("/api/users",userRoutes);
 app.use("/api/my-hotels",myHotelRoutes);
 app.use("/api/hotels",hotelRoutes);
+app.use("/api/my-bookings",bookingsRoutes);
 
 app.get("*",(req:Request,res:Response)=>{
     res.sendFile(path.join(__dirname,"../../frontend/dist/index.html"));

@@ -1,5 +1,5 @@
 import mongoose from  "mongoose";
-mongoose.connect("mongodb://127.0.0.1/hotel",{
+mongoose.connect("mongodb://localhost:27017/hotel",{
 })
 .then(()=>{
     console.log("Connection Successfull")
